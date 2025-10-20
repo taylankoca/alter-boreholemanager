@@ -1,0 +1,6 @@
+plugin:
+    name: 'livstag.boreholemanager::lang.plugin.name'
+    description: 'livstag.boreholemanager::lang.plugin.description'
+    author: Livstag
+    icon: oc-icon-list
+    homepage: ''
