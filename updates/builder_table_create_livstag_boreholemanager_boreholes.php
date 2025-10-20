@@ -49,6 +49,12 @@ class BuilderTableCreateLivstagBoreholemanagerBoreholes extends Migration
             $table->string('tespit_eden', 100)->nullable();
             $table->date('tespit_tarihi')->nullable();
             $table->text('aciklama')->nullable();
+            
+            // Image fields for external file attachments
+            $table->string('image1_path')->nullable();
+            $table->string('image1_filename')->nullable();
+            $table->string('image2_path')->nullable();
+            $table->string('image2_filename')->nullable();
 
             $table->timestamps();
             $table->softDeletes(); // deleted_at sütunu

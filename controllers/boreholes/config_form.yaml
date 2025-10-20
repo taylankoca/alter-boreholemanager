@@ -1,0 +1,276 @@
+# ===================================
+# Form Behavior Config
+# ===================================
+
+name: Borehole
+modelClass: Livstag\BoreholeManager\Models\Borehole
+form: $/livstag/boreholemanager/controllers/boreholes/_form.htm
+
+defaultRedirect: livstag/boreholemanager/boreholes
+create:
+    title: livstag.boreholemanager::lang.boreholes.create_title
+    redirect: livstag/boreholemanager/boreholes/update/:id
+    redirectClose: livstag/boreholemanager/boreholes
+update:
+    title: livstag.boreholemanager::lang.boreholes.update_title
+    redirect: livstag/boreholemanager/boreholes
+    redirectClose: livstag/boreholemanager/boreholes
+preview:
+    title: livstag.boreholemanager::lang.boreholes.preview_title
+    redirect: livstag/boreholemanager/boreholes
+
+# Form tabs
+tabs:
+    fields:
+        # Basic Information Tab
+        belge_no:
+            label: livstag.boreholemanager::lang.boreholes.belge_no
+            type: text
+            span: left
+            required: true
+            tab: livstag.boreholemanager::lang.boreholes.tabs.basic_info
+
+        acildigi_yil:
+            label: livstag.boreholemanager::lang.boreholes.acildigi_yil
+            type: number
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.basic_info
+
+        derinlik_m:
+            label: livstag.boreholemanager::lang.boreholes.derinlik_m
+            type: number
+            span: left
+            step: 0.01
+            tab: livstag.boreholemanager::lang.boreholes.tabs.basic_info
+
+        statik_seviye_m:
+            label: livstag.boreholemanager::lang.boreholes.statik_seviye_m
+            type: number
+            span: right
+            step: 0.01
+            tab: livstag.boreholemanager::lang.boreholes.tabs.basic_info
+
+        dinamik_seviye_m:
+            label: livstag.boreholemanager::lang.boreholes.dinamik_seviye_m
+            type: number
+            span: left
+            step: 0.01
+            tab: livstag.boreholemanager::lang.boreholes.tabs.basic_info
+
+        pompa_tecrubesi_debisi_litre_sn:
+            label: livstag.boreholemanager::lang.boreholes.pompa_tecrubesi_debisi_litre_sn
+            type: number
+            span: right
+            step: 0.01
+            tab: livstag.boreholemanager::lang.boreholes.tabs.basic_info
+
+        # Allocation Information Tab
+        tahsis_amaci:
+            label: livstag.boreholemanager::lang.boreholes.tahsis_amaci
+            type: dropdown
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.allocation
+            options: getPurposes
+
+        tahsis_miktari_m3_yil:
+            label: livstag.boreholemanager::lang.boreholes.tahsis_miktari_m3_yil
+            type: number
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.allocation
+
+        sulama_alani_dekar:
+            label: livstag.boreholemanager::lang.boreholes.sulama_alani_dekar
+            type: number
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.allocation
+
+        isletme_faaliyet_konusu:
+            label: livstag.boreholemanager::lang.boreholes.isletme_faaliyet_konusu
+            type: text
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.allocation
+
+        # Document Information Tab
+        belge_sahibi:
+            label: livstag.boreholemanager::lang.boreholes.belge_sahibi
+            type: text
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.document
+
+        arazi_sahibi:
+            label: livstag.boreholemanager::lang.boreholes.arazi_sahibi
+            type: text
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.document
+
+        # Location Information Tab
+        adres:
+            label: livstag.boreholemanager::lang.boreholes.adres
+            type: textarea
+            span: full
+            tab: livstag.boreholemanager::lang.boreholes.tabs.location
+
+        ili:
+            label: livstag.boreholemanager::lang.boreholes.ili
+            type: dropdown
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.location
+            options: getProvinces
+
+        ilcesi:
+            label: livstag.boreholemanager::lang.boreholes.ilcesi
+            type: dropdown
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.location
+            dependsOn: ili
+            options: getDistricts
+
+        koy_mahalle_mevkii:
+            label: livstag.boreholemanager::lang.boreholes.koy_mahalle_mevkii
+            type: text
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.location
+
+        pafta_ada_parsel:
+            label: livstag.boreholemanager::lang.boreholes.pafta_ada_parsel
+            type: text
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.location
+
+        koordinat_utm:
+            label: livstag.boreholemanager::lang.boreholes.koordinat_utm
+            type: text
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.location
+
+        kotu_m:
+            label: livstag.boreholemanager::lang.boreholes.kotu_m
+            type: number
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.location
+
+        # Technical Information Tab
+        havza_alt_havza_adi:
+            label: livstag.boreholemanager::lang.boreholes.havza_alt_havza_adi
+            type: text
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.technical
+
+        formasyon_litoloji:
+            label: livstag.boreholemanager::lang.boreholes.formasyon_litoloji
+            type: text
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.technical
+
+        kuyu_acan_firma_sondor_belge_no:
+            label: livstag.boreholemanager::lang.boreholes.kuyu_acan_firma_sondor_belge_no
+            type: text
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.technical
+
+        kuyu_derinlik_m_tekrar:
+            label: livstag.boreholemanager::lang.boreholes.kuyu_derinlik_m_tekrar
+            type: number
+            span: right
+            step: 0.01
+            tab: livstag.boreholemanager::lang.boreholes.tabs.technical
+
+        pompa_debisi_ve_gucu_fiskiye_sayisi:
+            label: livstag.boreholemanager::lang.boreholes.pompa_debisi_ve_gucu_fiskiye_sayisi
+            type: number
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.technical
+
+        statik_seviye_olculebiliyorsa_m:
+            label: livstag.boreholemanager::lang.boreholes.statik_seviye_olculebiliyorsa_m
+            type: number
+            span: right
+            step: 0.01
+            tab: livstag.boreholemanager::lang.boreholes.tabs.technical
+
+        dinamik_seviye_pompa_montaj_derinligi:
+            label: livstag.boreholemanager::lang.boreholes.dinamik_seviye_pompa_montaj_derinligi
+            type: number
+            span: left
+            step: 0.01
+            tab: livstag.boreholemanager::lang.boreholes.tabs.technical
+
+        # Irrigation Information Tab
+        sulama_alani_donum:
+            label: livstag.boreholemanager::lang.boreholes.sulama_alani_donum
+            type: number
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.irrigation
+
+        sulama_sistemi:
+            label: livstag.boreholemanager::lang.boreholes.sulama_sistemi
+            type: text
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.irrigation
+
+        yilda_ortalama_kac_sulama:
+            label: livstag.boreholemanager::lang.boreholes.yilda_ortalama_kac_sulama
+            type: number
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.irrigation
+
+        bir_sulamada_kac_saat_calisiyor:
+            label: livstag.boreholemanager::lang.boreholes.bir_sulamada_kac_saat_calisiyor
+            type: number
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.irrigation
+
+        ekilen_urun:
+            label: livstag.boreholemanager::lang.boreholes.ekilen_urun
+            type: text
+            span: full
+            tab: livstag.boreholemanager::lang.boreholes.tabs.irrigation
+
+        # Energy Information Tab
+        icme_kullanma_sanayi_gunluk_calisma_suresi_saat:
+            label: livstag.boreholemanager::lang.boreholes.icme_kullanma_sanayi_gunluk_calisma_suresi_saat
+            type: number
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.energy
+
+        icme_kullanma_sanayi_yillik_calisma_suresi_gun:
+            label: livstag.boreholemanager::lang.boreholes.icme_kullanma_sanayi_yillik_calisma_suresi_gun
+            type: number
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.energy
+
+        yillik_calismada_enerji_tuketimi_kw:
+            label: livstag.boreholemanager::lang.boreholes.yillik_calismada_enerji_tuketimi_kw
+            type: number
+            span: left
+            step: 0.01
+            tab: livstag.boreholemanager::lang.boreholes.tabs.energy
+
+        # Detection Information Tab
+        tespit_eden:
+            label: livstag.boreholemanager::lang.boreholes.tespit_eden
+            type: text
+            span: left
+            tab: livstag.boreholemanager::lang.boreholes.tabs.detection
+
+        tespit_tarihi:
+            label: livstag.boreholemanager::lang.boreholes.tespit_tarihi
+            type: datepicker
+            span: right
+            tab: livstag.boreholemanager::lang.boreholes.tabs.detection
+
+        aciklama:
+            label: livstag.boreholemanager::lang.boreholes.aciklama
+            type: textarea
+            span: full
+            tab: livstag.boreholemanager::lang.boreholes.tabs.detection
+
+        # Images Tab
+        images:
+            label: livstag.boreholemanager::lang.boreholes.images
+            type: fileupload
+            mode: image
+            span: full
+            tab: livstag.boreholemanager::lang.boreholes.tabs.images
+            useCaption: true
+            maxFiles: 10

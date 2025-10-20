@@ -1,0 +1,287 @@
+# ===================================
+# Import Export Behavior Config
+# ===================================
+
+modelClass: Livstag\BoreholeManager\Models\Borehole
+
+# Import configuration
+import:
+    title: livstag.boreholemanager::lang.boreholes.import_boreholes
+    list: $/livstag/boreholemanager/controllers/boreholes/_import_list.htm
+    fileName: boreholes_import
+
+# Export configuration
+export:
+    title: livstag.boreholemanager::lang.boreholes.export_boreholes
+    list: $/livstag/boreholemanager/controllers/boreholes/_export_list.htm
+    fileName: boreholes_export
+
+# Import columns mapping
+importColumns:
+    belge_no:
+        label: livstag.boreholemanager::lang.boreholes.belge_no
+        type: string
+        required: true
+
+    acildigi_yil:
+        label: livstag.boreholemanager::lang.boreholes.acildigi_yil
+        type: integer
+
+    derinlik_m:
+        label: livstag.boreholemanager::lang.boreholes.derinlik_m
+        type: decimal
+
+    statik_seviye_m:
+        label: livstag.boreholemanager::lang.boreholes.statik_seviye_m
+        type: decimal
+
+    dinamik_seviye_m:
+        label: livstag.boreholemanager::lang.boreholes.dinamik_seviye_m
+        type: decimal
+
+    pompa_tecrubesi_debisi_litre_sn:
+        label: livstag.boreholemanager::lang.boreholes.pompa_tecrubesi_debisi_litre_sn
+        type: decimal
+
+    tahsis_amaci:
+        label: livstag.boreholemanager::lang.boreholes.tahsis_amaci
+        type: string
+
+    tahsis_miktari_m3_yil:
+        label: livstag.boreholemanager::lang.boreholes.tahsis_miktari_m3_yil
+        type: integer
+
+    sulama_alani_dekar:
+        label: livstag.boreholemanager::lang.boreholes.sulama_alani_dekar
+        type: integer
+
+    isletme_faaliyet_konusu:
+        label: livstag.boreholemanager::lang.boreholes.isletme_faaliyet_konusu
+        type: string
+
+    belge_sahibi:
+        label: livstag.boreholemanager::lang.boreholes.belge_sahibi
+        type: string
+
+    arazi_sahibi:
+        label: livstag.boreholemanager::lang.boreholes.arazi_sahibi
+        type: string
+
+    adres:
+        label: livstag.boreholemanager::lang.boreholes.adres
+        type: string
+
+    ili:
+        label: livstag.boreholemanager::lang.boreholes.ili
+        type: string
+
+    ilcesi:
+        label: livstag.boreholemanager::lang.boreholes.ilcesi
+        type: string
+
+    koy_mahalle_mevkii:
+        label: livstag.boreholemanager::lang.boreholes.koy_mahalle_mevkii
+        type: string
+
+    pafta_ada_parsel:
+        label: livstag.boreholemanager::lang.boreholes.pafta_ada_parsel
+        type: string
+
+    koordinat_utm:
+        label: livstag.boreholemanager::lang.boreholes.koordinat_utm
+        type: string
+
+    kotu_m:
+        label: livstag.boreholemanager::lang.boreholes.kotu_m
+        type: integer
+
+    havza_alt_havza_adi:
+        label: livstag.boreholemanager::lang.boreholes.havza_alt_havza_adi
+        type: string
+
+    formasyon_litoloji:
+        label: livstag.boreholemanager::lang.boreholes.formasyon_litoloji
+        type: string
+
+    kuyu_acan_firma_sondor_belge_no:
+        label: livstag.boreholemanager::lang.boreholes.kuyu_acan_firma_sondor_belge_no
+        type: string
+
+    kuyu_derinlik_m_tekrar:
+        label: livstag.boreholemanager::lang.boreholes.kuyu_derinlik_m_tekrar
+        type: decimal
+
+    pompa_debisi_ve_gucu_fiskiye_sayisi:
+        label: livstag.boreholemanager::lang.boreholes.pompa_debisi_ve_gucu_fiskiye_sayisi
+        type: integer
+
+    statik_seviye_olculebiliyorsa_m:
+        label: livstag.boreholemanager::lang.boreholes.statik_seviye_olculebiliyorsa_m
+        type: decimal
+
+    dinamik_seviye_pompa_montaj_derinligi:
+        label: livstag.boreholemanager::lang.boreholes.dinamik_seviye_pompa_montaj_derinligi
+        type: decimal
+
+    sulama_alani_donum:
+        label: livstag.boreholemanager::lang.boreholes.sulama_alani_donum
+        type: integer
+
+    sulama_sistemi:
+        label: livstag.boreholemanager::lang.boreholes.sulama_sistemi
+        type: string
+
+    yilda_ortalama_kac_sulama:
+        label: livstag.boreholemanager::lang.boreholes.yilda_ortalama_kac_sulama
+        type: integer
+
+    bir_sulamada_kac_saat_calisiyor:
+        label: livstag.boreholemanager::lang.boreholes.bir_sulamada_kac_saat_calisiyor
+        type: integer
+
+    ekilen_urun:
+        label: livstag.boreholemanager::lang.boreholes.ekilen_urun
+        type: string
+
+    icme_kullanma_sanayi_gunluk_calisma_suresi_saat:
+        label: livstag.boreholemanager::lang.boreholes.icme_kullanma_sanayi_gunluk_calisma_suresi_saat
+        type: integer
+
+    icme_kullanma_sanayi_yillik_calisma_suresi_gun:
+        label: livstag.boreholemanager::lang.boreholes.icme_kullanma_sanayi_yillik_calisma_suresi_gun
+        type: integer
+
+    yillik_calismada_enerji_tuketimi_kw:
+        label: livstag.boreholemanager::lang.boreholes.yillik_calismada_enerji_tuketimi_kw
+        type: decimal
+
+    tespit_eden:
+        label: livstag.boreholemanager::lang.boreholes.tespit_eden
+        type: string
+
+    tespit_tarihi:
+        label: livstag.boreholemanager::lang.boreholes.tespit_tarihi
+        type: date
+
+    aciklama:
+        label: livstag.boreholemanager::lang.boreholes.aciklama
+        type: text
+
+# Export columns
+exportColumns:
+    belge_no:
+        label: livstag.boreholemanager::lang.boreholes.belge_no
+
+    acildigi_yil:
+        label: livstag.boreholemanager::lang.boreholes.acildigi_yil
+
+    derinlik_m:
+        label: livstag.boreholemanager::lang.boreholes.derinlik_m
+
+    statik_seviye_m:
+        label: livstag.boreholemanager::lang.boreholes.statik_seviye_m
+
+    dinamik_seviye_m:
+        label: livstag.boreholemanager::lang.boreholes.dinamik_seviye_m
+
+    pompa_tecrubesi_debisi_litre_sn:
+        label: livstag.boreholemanager::lang.boreholes.pompa_tecrubesi_debisi_litre_sn
+
+    tahsis_amaci:
+        label: livstag.boreholemanager::lang.boreholes.tahsis_amaci
+
+    tahsis_miktari_m3_yil:
+        label: livstag.boreholemanager::lang.boreholes.tahsis_miktari_m3_yil
+
+    sulama_alani_dekar:
+        label: livstag.boreholemanager::lang.boreholes.sulama_alani_dekar
+
+    isletme_faaliyet_konusu:
+        label: livstag.boreholemanager::lang.boreholes.isletme_faaliyet_konusu
+
+    belge_sahibi:
+        label: livstag.boreholemanager::lang.boreholes.belge_sahibi
+
+    arazi_sahibi:
+        label: livstag.boreholemanager::lang.boreholes.arazi_sahibi
+
+    adres:
+        label: livstag.boreholemanager::lang.boreholes.adres
+
+    ili:
+        label: livstag.boreholemanager::lang.boreholes.ili
+
+    ilcesi:
+        label: livstag.boreholemanager::lang.boreholes.ilcesi
+
+    koy_mahalle_mevkii:
+        label: livstag.boreholemanager::lang.boreholes.koy_mahalle_mevkii
+
+    pafta_ada_parsel:
+        label: livstag.boreholemanager::lang.boreholes.pafta_ada_parsel
+
+    koordinat_utm:
+        label: livstag.boreholemanager::lang.boreholes.koordinat_utm
+
+    kotu_m:
+        label: livstag.boreholemanager::lang.boreholes.kotu_m
+
+    havza_alt_havza_adi:
+        label: livstag.boreholemanager::lang.boreholes.havza_alt_havza_adi
+
+    formasyon_litoloji:
+        label: livstag.boreholemanager::lang.boreholes.formasyon_litoloji
+
+    kuyu_acan_firma_sondor_belge_no:
+        label: livstag.boreholemanager::lang.boreholes.kuyu_acan_firma_sondor_belge_no
+
+    kuyu_derinlik_m_tekrar:
+        label: livstag.boreholemanager::lang.boreholes.kuyu_derinlik_m_tekrar
+
+    pompa_debisi_ve_gucu_fiskiye_sayisi:
+        label: livstag.boreholemanager::lang.boreholes.pompa_debisi_ve_gucu_fiskiye_sayisi
+
+    statik_seviye_olculebiliyorsa_m:
+        label: livstag.boreholemanager::lang.boreholes.statik_seviye_olculebiliyorsa_m
+
+    dinamik_seviye_pompa_montaj_derinligi:
+        label: livstag.boreholemanager::lang.boreholes.dinamik_seviye_pompa_montaj_derinligi
+
+    sulama_alani_donum:
+        label: livstag.boreholemanager::lang.boreholes.sulama_alani_donum
+
+    sulama_sistemi:
+        label: livstag.boreholemanager::lang.boreholes.sulama_sistemi
+
+    yilda_ortalama_kac_sulama:
+        label: livstag.boreholemanager::lang.boreholes.yilda_ortalama_kac_sulama
+
+    bir_sulamada_kac_saat_calisiyor:
+        label: livstag.boreholemanager::lang.boreholes.bir_sulamada_kac_saat_calisiyor
+
+    ekilen_urun:
+        label: livstag.boreholemanager::lang.boreholes.ekilen_urun
+
+    icme_kullanma_sanayi_gunluk_calisma_suresi_saat:
+        label: livstag.boreholemanager::lang.boreholes.icme_kullanma_sanayi_gunluk_calisma_suresi_saat
+
+    icme_kullanma_sanayi_yillik_calisma_suresi_gun:
+        label: livstag.boreholemanager::lang.boreholes.icme_kullanma_sanayi_yillik_calisma_suresi_gun
+
+    yillik_calismada_enerji_tuketimi_kw:
+        label: livstag.boreholemanager::lang.boreholes.yillik_calismada_enerji_tuketimi_kw
+
+    tespit_eden:
+        label: livstag.boreholemanager::lang.boreholes.tespit_eden
+
+    tespit_tarihi:
+        label: livstag.boreholemanager::lang.boreholes.tespit_tarihi
+
+    aciklama:
+        label: livstag.boreholemanager::lang.boreholes.aciklama
+
+    created_at:
+        label: livstag.boreholemanager::lang.boreholes.created_at
+
+    updated_at:
+        label: livstag.boreholemanager::lang.boreholes.updated_at

@@ -1,0 +1,151 @@
+# ===================================
+# List Behavior Config
+# ===================================
+
+title: livstag.boreholemanager::lang.boreholes.manage_boreholes
+modelClass: Livstag\BoreholeManager\Models\Borehole
+list: $/livstag/boreholemanager/controllers/boreholes/_list.htm
+recordUrl: livstag/boreholemanager/boreholes/update/:id
+defaultSort:
+    column: created_at
+    direction: desc
+
+# List columns
+columns:
+    belge_no:
+        label: livstag.boreholemanager::lang.boreholes.belge_no
+        type: text
+        searchable: true
+        sortable: true
+
+    belge_sahibi:
+        label: livstag.boreholemanager::lang.boreholes.belge_sahibi
+        type: text
+        searchable: true
+        sortable: true
+
+    ili:
+        label: livstag.boreholemanager::lang.boreholes.ili
+        type: text
+        searchable: true
+        sortable: true
+
+    ilcesi:
+        label: livstag.boreholemanager::lang.boreholes.ilcesi
+        type: text
+        searchable: true
+        sortable: true
+
+    tahsis_amaci:
+        label: livstag.boreholemanager::lang.boreholes.tahsis_amaci
+        type: text
+        searchable: true
+        sortable: true
+
+    derinlik_m:
+        label: livstag.boreholemanager::lang.boreholes.derinlik_m
+        type: number
+        sortable: true
+
+    acildigi_yil:
+        label: livstag.boreholemanager::lang.boreholes.acildigi_yil
+        type: number
+        sortable: true
+
+    status:
+        label: livstag.boreholemanager::lang.boreholes.status
+        type: text
+        sortable: false
+
+    created_at:
+        label: livstag.boreholemanager::lang.boreholes.created_at
+        type: datetime
+        sortable: true
+
+    updated_at:
+        label: livstag.boreholemanager::lang.boreholes.updated_at
+        type: datetime
+        sortable: true
+
+# List filters
+filter:
+    fields:
+        belge_no:
+            label: livstag.boreholemanager::lang.boreholes.belge_no
+            type: text
+
+        belge_sahibi:
+            label: livstag.boreholemanager::lang.boreholes.belge_sahibi
+            type: text
+
+        ili:
+            label: livstag.boreholemanager::lang.boreholes.ili
+            type: dropdown
+            options: getProvinces
+
+        ilcesi:
+            label: livstag.boreholemanager::lang.boreholes.ilcesi
+            type: dropdown
+            dependsOn: ili
+            options: getDistricts
+
+        tahsis_amaci:
+            label: livstag.boreholemanager::lang.boreholes.tahsis_amaci
+            type: dropdown
+            options: getPurposes
+
+        acildigi_yil:
+            label: livstag.boreholemanager::lang.boreholes.acildigi_yil
+            type: number
+
+        derinlik_m:
+            label: livstag.boreholemanager::lang.boreholes.derinlik_m
+            type: number
+
+        status:
+            label: livstag.boreholemanager::lang.boreholes.status
+            type: dropdown
+            options:
+                active: livstag.boreholemanager::lang.boreholes.status_active
+                outdated: livstag.boreholemanager::lang.boreholes.status_outdated
+                deleted: livstag.boreholemanager::lang.boreholes.status_deleted
+
+        created_at:
+            label: livstag.boreholemanager::lang.boreholes.created_at
+            type: date
+
+# List toolbar
+toolbar:
+    buttons:
+        create:
+            label: livstag.boreholemanager::lang.boreholes.new_borehole
+            icon: oc-icon-plus
+            class: btn-primary
+
+        import:
+            label: livstag.boreholemanager::lang.boreholes.import
+            icon: oc-icon-upload
+            class: btn-success
+
+        export:
+            label: livstag.boreholemanager::lang.boreholes.export
+            icon: oc-icon-download
+            class: btn-info
+
+        delete:
+            label: livstag.boreholemanager::lang.boreholes.delete_selected
+            icon: oc-icon-trash-o
+            class: btn-danger
+
+        restore:
+            label: livstag.boreholemanager::lang.boreholes.restore_selected
+            icon: oc-icon-refresh
+            class: btn-warning
+
+# List per page options
+recordsPerPage: 50
+showPageNumbers: true
+showSetup: true
+showSorting: true
+showSearch: true
+showFilter: true
