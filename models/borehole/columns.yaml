@@ -1,0 +1,28 @@
+columns:
+    id:
+        label: id
+        type: number
+    acildigi_yil:
+        label: acildigi_yil
+        type: number
+    derinlik_m:
+        label: derinlik_m
+        type: text
+    statik_seviye_m:
+        label: statik_seviye_m
+        type: text
+    ili:
+        label: ili
+        type: text
+    ilcesi:
+        label: ilcesi
+        type: text
+    koy_mahalle_mevkii:
+        label: koy_mahalle_mevkii
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime

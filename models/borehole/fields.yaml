@@ -1,0 +1,161 @@
+fields:
+    id:
+        label: Id
+        span: full
+        type: number
+    acildigi_yil:
+        label: 'Acildigi yil'
+        span: full
+        type: number
+    derinlik_m:
+        label: 'Derinlik m'
+        span: full
+        type: number
+    statik_seviye_m:
+        label: 'Statik seviye m'
+        span: full
+        type: number
+    dinamik_seviye_m:
+        label: 'Dinamik seviye m'
+        span: full
+        type: number
+    pompa_tecrubesi_debisi_litre_sn:
+        label: 'Pompa tecrubesi debisi litre sn'
+        span: full
+        type: number
+    tahsis_amaci:
+        label: 'Tahsis amaci'
+        span: full
+        type: text
+    tahsis_miktari_m3_yil:
+        label: 'Tahsis miktari m3 yil'
+        span: full
+        type: number
+    sulama_alani_dekar:
+        label: 'Sulama alani dekar'
+        span: full
+        type: number
+    isletme_faaliyet_konusu:
+        label: 'Isletme faaliyet konusu'
+        span: full
+        type: text
+    belge_no:
+        label: 'Belge no'
+        span: full
+        type: text
+    belge_sahibi:
+        label: 'Belge sahibi'
+        span: full
+        type: text
+    arazi_sahibi:
+        label: 'Arazi sahibi'
+        span: full
+        type: text
+    adres:
+        label: Adres
+        span: full
+        type: text
+    ili:
+        label: Ili
+        span: full
+        type: text
+    ilcesi:
+        label: Ilcesi
+        span: full
+        type: text
+    koy_mahalle_mevkii:
+        label: 'Koy mahalle mevkii'
+        span: full
+        type: text
+    pafta_ada_parsel:
+        label: 'Pafta ada parsel'
+        span: full
+        type: text
+    koordinat_utm:
+        label: 'Koordinat utm'
+        span: full
+        type: text
+    kotu_m:
+        label: 'Kotu m'
+        span: full
+        type: number
+    havza_alt_havza_adi:
+        label: 'Havza alt havza adi'
+        span: full
+        type: text
+    formasyon_litoloji:
+        label: 'Formasyon litoloji'
+        span: full
+        type: text
+    kuyu_acan_firma_sondor_belge_no:
+        label: 'Kuyu acan firma sondor belge no'
+        span: full
+        type: text
+    kuyu_derinlik_m_tekrar:
+        label: 'Kuyu derinlik m tekrar'
+        span: full
+        type: number
+    pompa_debisi_ve_gucu_fiskiye_sayisi:
+        label: 'Pompa debisi ve gucu fiskiye sayisi'
+        span: full
+        type: number
+    statik_seviye_olculebiliyorsa_m:
+        label: 'Statik seviye olculebiliyorsa m'
+        span: full
+        type: number
+    dinamik_seviye_pompa_montaj_derinligi:
+        label: 'Dinamik seviye pompa montaj derinligi'
+        span: full
+        type: number
+    sulama_alani_donum:
+        label: 'Sulama alani donum'
+        span: full
+        type: number
+    sulama_sistemi:
+        label: 'Sulama sistemi'
+        span: full
+        type: text
+    yilda_ortalama_kac_sulama:
+        label: 'Yilda ortalama kac sulama'
+        span: full
+        type: number
+    bir_sulamada_kac_saat_calisiyor:
+        label: 'Bir sulamada kac saat calisiyor'
+        span: full
+        type: number
+    ekilen_urun:
+        label: 'Ekilen urun'
+        span: full
+        type: text
+    icme_kullanma_sanayi_gunluk_calisma_suresi_saat:
+        label: 'Icme kullanma sanayi gunluk calisma suresi saat'
+        span: full
+        type: number
+    icme_kullanma_sanayi_yillik_calisma_suresi_gun:
+        label: 'Icme kullanma sanayi yillik calisma suresi gun'
+        span: full
+        type: number
+    yillik_calismada_enerji_tuketimi_kw:
+        label: 'Yillik calismada enerji tuketimi kw'
+        span: full
+        type: number
+    tespit_eden:
+        label: 'Tespit eden'
+        span: full
+        type: text
+    tespit_tarihi:
+        label: 'Tespit tarihi'
+        span: full
+        type: datepicker
+    aciklama:
+        label: Aciklama
+        span: full
+        type: textarea
+    created_at:
+        label: 'Created at'
+        span: full
+        type: datepicker
+    updated_at:
+        label: 'Updated at'
+        span: full
+        type: datepicker

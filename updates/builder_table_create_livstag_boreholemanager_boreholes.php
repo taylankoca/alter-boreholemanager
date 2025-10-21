@@ -12,7 +12,8 @@ class BuilderTableCreateLivstagBoreholemanagerBoreholes extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned(); // id (primary key)
 
-            $table->integer('acildigi_yil')->nullable();
+            // Gelen veri string/tarih formatında olduğu için string olarak güncellendi.
+            $table->string('acildigi_yil', 20)->nullable(); 
             $table->decimal('derinlik_m', 10, 2)->nullable();
             $table->decimal('statik_seviye_m', 10, 2)->nullable();
             $table->decimal('dinamik_seviye_m', 10, 2)->nullable();
@@ -20,19 +21,19 @@ class BuilderTableCreateLivstagBoreholemanagerBoreholes extends Migration
             $table->string('tahsis_amaci', 50)->nullable();
             $table->integer('tahsis_miktari_m3_yil')->nullable();
             $table->integer('sulama_alani_dekar')->nullable();
-            $table->string('isletme_faaliyet_konusu', 100)->nullable();
+            $table->string('isletme_faaliyet_konusu', 150)->nullable(); // Uzunluk artırıldı
             $table->string('belge_no', 100)->nullable();
-            $table->string('belge_sahibi', 100)->nullable();
-            $table->string('arazi_sahibi', 100)->nullable();
+            $table->string('belge_sahibi', 255)->nullable(); // Uzunluk artırıldı
+            $table->string('arazi_sahibi', 255)->nullable(); // Uzunluk artırıldı
             $table->string('adres', 255)->nullable();
             $table->string('ili', 50)->nullable();
             $table->string('ilcesi', 50)->nullable();
             $table->string('koy_mahalle_mevkii', 100)->nullable();
-            $table->string('pafta_ada_parsel', 100)->nullable();
-            $table->string('koordinat_utm', 100)->nullable();
-            $table->integer('kotu_m')->nullable();
+            $table->string('pafta_ada_parsel', 150)->nullable(); // Uzunluk artırıldı
+            $table->string('koordinat_utm', 150)->nullable(); // Uzunluk artırıldı
+            $table->decimal('kotu_m', 10, 2)->nullable(); // Kot bilgileri ondalık olabileceği için decimal olarak değiştirildi
             $table->string('havza_alt_havza_adi', 100)->nullable();
-            $table->string('formasyon_litoloji', 100)->nullable();
+            $table->string('formasyon_litoloji', 200)->nullable(); // Uzunluk artırıldı
             $table->string('kuyu_acan_firma_sondor_belge_no', 100)->nullable();
             $table->decimal('kuyu_derinlik_m_tekrar', 10, 2)->nullable();
             $table->integer('pompa_debisi_ve_gucu_fiskiye_sayisi')->nullable();

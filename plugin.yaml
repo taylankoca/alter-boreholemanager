@@ -4,3 +4,21 @@ plugin:
     author: Livstag
     icon: oc-icon-list
     homepage: ''
+permissions:
+    borehole_manager:
+        tab: 'livstag.boreholemanager::lang.boreholemanager.manager_access'
+        label: 'livstag.boreholemanager::lang.boreholemanager.manager_access'
+navigation:
+    boreholes:
+        label: Boreholes
+        url: livstag/boreholemanager/boreholes
+        icon: icon-align-justify
+        permissions:
+            - borehole_manager
+        sideMenu:
+            boreholes:
+                label: Boreholes
+                url: livstag/boreholemanager/boreholes
+                icon: icon-sliders
+                permissions:
+                    - borehole_manager
