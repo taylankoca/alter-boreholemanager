@@ -47,7 +47,7 @@ class Boreholes extends Controller
             return;
         }
 
-        $this->generateExcelFile($boreholes, 'secililer');
+        $this->generateIndividualExcelFiles($boreholes);
     }
 
     /**
@@ -62,139 +62,143 @@ class Boreholes extends Controller
             return;
         }
 
-        $this->generateExcelFile($boreholes, 'tum_kayitlar');
+        $this->generateIndividualExcelFiles($boreholes);
     }
 
     /**
-     * Excel dosyası oluştur ve storage'a kaydet
+     * Her borehole kaydı için ayrı Excel dosyası oluştur
      */
-    private function generateExcelFile($boreholes, $filenamePrefix)
+    private function generateIndividualExcelFiles($boreholes)
     {
-        try {
-            $spreadsheet = new Spreadsheet();
-            $sheet = $spreadsheet->getActiveSheet();
-            
-            // Başlık satırı
-            $headers = [
-                'ID', 'Açıldığı Yıl', 'Derinlik (m)', 'Statik Seviye (m)', 'Dinamik Seviye (m)',
-                'Pompa Tecrübesi Debisi (lt/sn)', 'Tahsis Amacı', 'Tahsis Miktarı (m³/yıl)',
-                'Sulama Alanı (dekar)', 'İşletme Faaliyet Konusu', 'Belge No', 'Belge Sahibi',
-                'Arazi Sahibi', 'Adres', 'İli', 'İlçesi', 'Köy/Mahalle/Mevkii',
-                'Pafta/Ada/Parsel', 'Koordinat UTM', 'Kotu (m)', 'Havza/Alt Havza Adı',
-                'Formasyon/Litoloji', 'Kuyu Açan Firma/Sondör Belge No', 'Kuyu Derinlik (m) Tekrar',
-                'Pompa Debisi ve Gücü/Fişkiye Sayısı', 'Statik Seviye Ölçülebiliyorsa (m)',
-                'Dinamik Seviye/Pompa Montaj Derinliği', 'Sulama Alanı (dönüm)', 'Sulama Sistemi',
-                'Yılda Ortalama Kaç Sulama', 'Bir Sulamada Kaç Saat Çalışıyor', 'Ekilen Ürün',
-                'İçme/Kullanma/Sanayi Günlük Çalışma Süresi (saat)', 'İçme/Kullanma/Sanayi Yıllık Çalışma Süresi (gün)',
-                'Yıllık Çalışmada Enerji Tüketimi (kW)', 'Tespit Eden', 'Tespit Tarihi', 'Açıklama',
-                'Oluşturulma Tarihi', 'Güncellenme Tarihi'
-            ];
+        $createdFiles = [];
+        $errors = [];
 
-            // Başlıkları yaz
-            $col = 1;
-            foreach ($headers as $header) {
-                $sheet->setCellValueByColumnAndRow($col, 1, $header);
-                $col++;
-            }
-
-            // Başlık stilini ayarla
-            $headerRange = 'A1:' . $sheet->getCellByColumnAndRow(count($headers), 1)->getCoordinate();
-            $sheet->getStyle($headerRange)->applyFromArray([
-                'font' => ['bold' => true, 'color' => ['rgb' => 'FFFFFF']],
-                'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['rgb' => '366092']],
-                'alignment' => ['horizontal' => Alignment::HORIZONTAL_CENTER],
-                'borders' => ['allBorders' => ['borderStyle' => Border::BORDER_THIN]]
-            ]);
-
-            // Veri satırlarını yaz
-            $row = 2;
-            foreach ($boreholes as $borehole) {
-                $col = 1;
-                $data = [
-                    $borehole->id,
-                    $borehole->acildigi_yil,
-                    $borehole->derinlik_m,
-                    $borehole->statik_seviye_m,
-                    $borehole->dinamik_seviye_m,
-                    $borehole->pompa_tecrubesi_debisi_litre_sn,
-                    $borehole->tahsis_amaci,
-                    $borehole->tahsis_miktari_m3_yil,
-                    $borehole->sulama_alani_dekar,
-                    $borehole->isletme_faaliyet_konusu,
-                    $borehole->belge_no,
-                    $borehole->belge_sahibi,
-                    $borehole->arazi_sahibi,
-                    $borehole->adres,
-                    $borehole->ili,
-                    $borehole->ilcesi,
-                    $borehole->koy_mahalle_mevkii,
-                    $borehole->pafta_ada_parsel,
-                    $borehole->koordinat_utm,
-                    $borehole->kotu_m,
-                    $borehole->havza_alt_havza_adi,
-                    $borehole->formasyon_litoloji,
-                    $borehole->kuyu_acan_firma_sondor_belge_no,
-                    $borehole->kuyu_derinlik_m_tekrar,
-                    $borehole->pompa_debisi_ve_gucu_fiskiye_sayisi,
-                    $borehole->statik_seviye_olculebiliyorsa_m,
-                    $borehole->dinamik_seviye_pompa_montaj_derinligi,
-                    $borehole->sulama_alani_donum,
-                    $borehole->sulama_sistemi,
-                    $borehole->yilda_ortalama_kac_sulama,
-                    $borehole->bir_sulamada_kac_saat_calisiyor,
-                    $borehole->ekilen_urun,
-                    $borehole->icme_kullanma_sanayi_gunluk_calisma_suresi_saat,
-                    $borehole->icme_kullanma_sanayi_yillik_calisma_suresi_gun,
-                    $borehole->yillik_calismada_enerji_tuketimi_kw,
-                    $borehole->tespit_eden,
-                    $borehole->tespit_tarihi ? $borehole->tespit_tarihi->format('d.m.Y') : '',
-                    $borehole->aciklama,
-                    $borehole->created_at ? $borehole->created_at->format('d.m.Y H:i') : '',
-                    $borehole->updated_at ? $borehole->updated_at->format('d.m.Y H:i') : ''
-                ];
-
-                foreach ($data as $value) {
-                    $sheet->setCellValueByColumnAndRow($col, $row, $value);
-                    $col++;
+        foreach ($boreholes as $borehole) {
+            try {
+                $filename = $this->generateSingleBoreholeExcel($borehole);
+                if ($filename) {
+                    $createdFiles[] = $filename;
                 }
-                $row++;
+            } catch (\Exception $e) {
+                $errors[] = "ID {$borehole->id} için hata: " . $e->getMessage();
+                \Log::error("Borehole Excel Export Error for ID {$borehole->id}: " . $e->getMessage());
             }
-
-            // Sütun genişliklerini ayarla
-            foreach (range('A', $sheet->getCellByColumnAndRow(count($headers), 1)->getColumn()) as $column) {
-                $sheet->getColumnDimension($column)->setAutoSize(true);
-            }
-
-            // Veri aralığına border ekle
-            $dataRange = 'A1:' . $sheet->getCellByColumnAndRow(count($headers), $row - 1)->getCoordinate();
-            $sheet->getStyle($dataRange)->applyFromArray([
-                'borders' => ['allBorders' => ['borderStyle' => Border::BORDER_THIN]]
-            ]);
-
-            // Dosya adını oluştur
-            $timestamp = date('Y-m-d_H-i-s');
-            $filename = "borehole_{$filenamePrefix}_{$timestamp}.xlsx";
-            
-            // Geçici dosya oluştur
-            $tempFile = tempnam(sys_get_temp_dir(), 'borehole_excel_');
-            $writer = new Xlsx($spreadsheet);
-            $writer->save($tempFile);
-
-            // Storage'a kaydet
-            $storagePath = "media/borehole_exports/{$filename}";
-            Storage::put($storagePath, file_get_contents($tempFile));
-            
-            // Geçici dosyayı sil
-            unlink($tempFile);
-
-            \Flash::success("Excel dosyası başarıyla oluşturuldu: {$filename}");
-            
-            // Dosyayı indir
-            return Response::download(storage_path("app/{$storagePath}"), $filename);
-
-        } catch (\Exception $e) {
-            \Flash::error('Excel dosyası oluşturulurken hata oluştu: ' . $e->getMessage());
-            \Log::error('Borehole Excel Export Error: ' . $e->getMessage());
         }
+
+        // Sonuç mesajı
+        if (!empty($createdFiles)) {
+            $count = count($createdFiles);
+            \Flash::success("{$count} adet Excel dosyası başarıyla oluşturuldu: " . implode(', ', $createdFiles));
+        }
+
+        if (!empty($errors)) {
+            \Flash::error("Bazı dosyalar oluşturulamadı: " . implode('; ', $errors));
+        }
+    }
+
+    /**
+     * Tek bir borehole kaydı için Excel dosyası oluştur
+     */
+    private function generateSingleBoreholeExcel($borehole)
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        
+        // Dosya adını oluştur (5 haneli ID formatı)
+        $formattedId = str_pad($borehole->id, 5, '0', STR_PAD_LEFT);
+        $filename = "ALT-{$formattedId}.xlsx";
+        
+        // Alan adları ve değerleri
+        $fields = [
+            'ID' => $borehole->id,
+            'Açıldığı Yıl' => $borehole->acildigi_yil,
+            'Derinlik (m)' => $borehole->derinlik_m,
+            'Statik Seviye (m)' => $borehole->statik_seviye_m,
+            'Dinamik Seviye (m)' => $borehole->dinamik_seviye_m,
+            'Pompa Tecrübesi Debisi (lt/sn)' => $borehole->pompa_tecrubesi_debisi_litre_sn,
+            'Tahsis Amacı' => $borehole->tahsis_amaci,
+            'Tahsis Miktarı (m³/yıl)' => $borehole->tahsis_miktari_m3_yil,
+            'Sulama Alanı (dekar)' => $borehole->sulama_alani_dekar,
+            'İşletme Faaliyet Konusu' => $borehole->isletme_faaliyet_konusu,
+            'Belge No' => $borehole->belge_no,
+            'Belge Sahibi' => $borehole->belge_sahibi,
+            'Arazi Sahibi' => $borehole->arazi_sahibi,
+            'Adres' => $borehole->adres,
+            'İli' => $borehole->ili,
+            'İlçesi' => $borehole->ilcesi,
+            'Köy/Mahalle/Mevkii' => $borehole->koy_mahalle_mevkii,
+            'Pafta/Ada/Parsel' => $borehole->pafta_ada_parsel,
+            'Koordinat UTM' => $borehole->koordinat_utm,
+            'Kotu (m)' => $borehole->kotu_m,
+            'Havza/Alt Havza Adı' => $borehole->havza_alt_havza_adi,
+            'Formasyon/Litoloji' => $borehole->formasyon_litoloji,
+            'Kuyu Açan Firma/Sondör Belge No' => $borehole->kuyu_acan_firma_sondor_belge_no,
+            'Kuyu Derinlik (m) Tekrar' => $borehole->kuyu_derinlik_m_tekrar,
+            'Pompa Debisi ve Gücü/Fişkiye Sayısı' => $borehole->pompa_debisi_ve_gucu_fiskiye_sayisi,
+            'Statik Seviye Ölçülebiliyorsa (m)' => $borehole->statik_seviye_olculebiliyorsa_m,
+            'Dinamik Seviye/Pompa Montaj Derinliği' => $borehole->dinamik_seviye_pompa_montaj_derinligi,
+            'Sulama Alanı (dönüm)' => $borehole->sulama_alani_donum,
+            'Sulama Sistemi' => $borehole->sulama_sistemi,
+            'Yılda Ortalama Kaç Sulama' => $borehole->yilda_ortalama_kac_sulama,
+            'Bir Sulamada Kaç Saat Çalışıyor' => $borehole->bir_sulamada_kac_saat_calisiyor,
+            'Ekilen Ürün' => $borehole->ekilen_urun,
+            'İçme/Kullanma/Sanayi Günlük Çalışma Süresi (saat)' => $borehole->icme_kullanma_sanayi_gunluk_calisma_suresi_saat,
+            'İçme/Kullanma/Sanayi Yıllık Çalışma Süresi (gün)' => $borehole->icme_kullanma_sanayi_yillik_calisma_suresi_gun,
+            'Yıllık Çalışmada Enerji Tüketimi (kW)' => $borehole->yillik_calismada_enerji_tuketimi_kw,
+            'Tespit Eden' => $borehole->tespit_eden,
+            'Tespit Tarihi' => $borehole->tespit_tarihi ? $borehole->tespit_tarihi->format('d.m.Y') : '',
+            'Açıklama' => $borehole->aciklama,
+            'Oluşturulma Tarihi' => $borehole->created_at ? $borehole->created_at->format('d.m.Y H:i') : '',
+            'Güncellenme Tarihi' => $borehole->updated_at ? $borehole->updated_at->format('d.m.Y H:i') : ''
+        ];
+
+        // Başlık satırı
+        $sheet->setCellValue('A1', 'Alan Adı');
+        $sheet->setCellValue('B1', 'Değer');
+
+        // Başlık stilini ayarla
+        $sheet->getStyle('A1:B1')->applyFromArray([
+            'font' => ['bold' => true, 'color' => ['rgb' => 'FFFFFF']],
+            'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['rgb' => '366092']],
+            'alignment' => ['horizontal' => Alignment::HORIZONTAL_CENTER],
+            'borders' => ['allBorders' => ['borderStyle' => Border::BORDER_THIN]]
+        ]);
+
+        // Veri satırlarını yaz
+        $row = 2;
+        foreach ($fields as $fieldName => $value) {
+            $sheet->setCellValue("A{$row}", $fieldName);
+            $sheet->setCellValue("B{$row}", $value);
+            $row++;
+        }
+
+        // Sütun genişliklerini ayarla
+        $sheet->getColumnDimension('A')->setWidth(40);
+        $sheet->getColumnDimension('B')->setWidth(30);
+
+        // Veri aralığına border ekle
+        $dataRange = 'A1:B' . ($row - 1);
+        $sheet->getStyle($dataRange)->applyFromArray([
+            'borders' => ['allBorders' => ['borderStyle' => Border::BORDER_THIN]]
+        ]);
+
+        // A sütununu kalın yap (alan adları için)
+        $sheet->getStyle('A2:A' . ($row - 1))->applyFromArray([
+            'font' => ['bold' => true]
+        ]);
+
+        // Geçici dosya oluştur
+        $tempFile = tempnam(sys_get_temp_dir(), 'borehole_excel_');
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($tempFile);
+
+        // Storage'a kaydet
+        $storagePath = "media/borehole_exports/{$filename}";
+        Storage::put($storagePath, file_get_contents($tempFile));
+        
+        // Geçici dosyayı sil
+        unlink($tempFile);
+
+        return $filename;
     }
 }
