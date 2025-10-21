@@ -19,7 +19,11 @@ class Plugin extends PluginBase
 
     public function register()
     {
-
+        // Excel gösterme route'u
+        \Route::get('/kuyu/{id}', function($id) {
+            $controller = new \Livstag\BoreholeManager\Controllers\Boreholes();
+            return $controller->showExcel($id);
+        })->where('id', '[0-9]+');
     }
 
     public function registerComponents()

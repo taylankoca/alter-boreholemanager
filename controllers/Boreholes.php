@@ -201,4 +201,45 @@ class Boreholes extends Controller
 
         return $filename;
     }
+
+    /**
+     * Belirtilen ID'ye sahip borehole kaydının Excel dosyasını göster
+     */
+    public function showExcel($id)
+    {
+        try {
+            // Borehole kaydını bul
+            $borehole = Borehole::find($id);
+            
+            if (!$borehole) {
+                return response()->json(['error' => 'Borehole kaydı bulunamadı'], 404);
+            }
+
+            // Excel dosyasını oluştur
+            $filename = $this->generateSingleBoreholeExcel($borehole);
+            
+            if (!$filename) {
+                return response()->json(['error' => 'Excel dosyası oluşturulamadı'], 500);
+            }
+
+            // Dosya yolunu oluştur
+            $storagePath = "media/borehole_exports/{$filename}";
+            $fullPath = storage_path("app/{$storagePath}");
+            
+            // Dosyanın var olduğunu kontrol et
+            if (!file_exists($fullPath)) {
+                return response()->json(['error' => 'Excel dosyası bulunamadı'], 404);
+            }
+
+            // Excel dosyasını döndür
+            return response()->download($fullPath, $filename, [
+                'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'Content-Disposition' => 'attachment; filename="' . $filename . '"'
+            ]);
+
+        } catch (\Exception $e) {
+            \Log::error("Excel gösterme hatası ID {$id}: " . $e->getMessage());
+            return response()->json(['error' => 'Excel dosyası gösterilirken hata oluştu'], 500);
+        }
+    }
 }
